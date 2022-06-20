@@ -13,7 +13,10 @@ function Button({
     small = false,
     large = false,
     disable = false,
+    leftIcon,
+    rightIcon,
     children,
+    className,
     onClick,
     ...passProps
 }) {
@@ -31,6 +34,7 @@ function Button({
     }
 
     const classes = cx('wrapper', {
+        [className]: className,
         primary,
         outline,
         rounded,
@@ -39,14 +43,15 @@ function Button({
         text,
         disable,
     });
-
     if (disable) {
         delete props.onClick;
     }
 
     return (
         <Comp className={classes} {...props}>
-            <span>{children}</span>
+            {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
+            <span className={cx('title')}>{children}</span>
+            {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
         </Comp>
     );
 }
