@@ -7,6 +7,7 @@
     display: flex;
     width: var(--default-layout-width);
     min-height: 100vh;
+    padding: 0 var(--default-layout-horizontal-spacer);
     background-color: #ccc;
 }
 .content {

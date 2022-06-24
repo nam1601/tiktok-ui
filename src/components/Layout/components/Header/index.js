@@ -9,6 +9,7 @@ import {
     faAmericanSignLanguageInterpreting,
     faCircleQuestion,
     faKeyboard,
+    faLanguage,
 } from '@fortawesome/free-solid-svg-icons';
 import image from '~/assets/images';
 import classNames from 'classnames/bind';
@@ -24,6 +25,21 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: 'English',
+        children: {
+            title: faLanguage,
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'VietNamese',
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -43,6 +59,15 @@ function Header() {
             setSearchResult([]);
         }, 0);
     });
+
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case 'language':
+                break;
+            default:
+                break;
+        }
+    };
 
     return (
         <header className={cx('wrapper')}>
@@ -87,7 +112,7 @@ function Header() {
                         Upload
                     </Button>
                     <Button primary>Log in</Button>
-                    <Menu items={MENU_ITEMS}>
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>
