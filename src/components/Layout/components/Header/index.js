@@ -6,21 +6,30 @@ import {
     faMagnifyingGlass,
     faEllipsisVertical,
     faEarthAsia,
-    faAmericanSignLanguageInterpreting,
     faCircleQuestion,
     faKeyboard,
     faLanguage,
+    faCloudArrowUp,
+    faMessage,
+    faCoins,
+    faGear,
+    faArrowRightToBracket,
 } from '@fortawesome/free-solid-svg-icons';
+import 'tippy.js/dist/tippy.css'; // optional
 import image from '~/assets/images';
 import classNames from 'classnames/bind';
-import Tippy from '@tippyjs/react/headless';
+import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+
 import 'tippy.js/dist/tippy.css';
 import { useEffect, useState } from 'react';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 const cx = classNames.bind(styles);
+
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -68,15 +77,37 @@ function Header() {
                 break;
         }
     };
-
+    const currentUser = true;
+    const USER_MENU = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'View Profile',
+            to: '/profile',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCoins} />,
+            title: 'Get coin',
+            to: '/coin',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: 'Setting',
+            to: '/settings',
+        },
+        ...MENU_ITEMS,
+        {
+            icon: <FontAwesomeIcon icon={faArrowRightToBracket} />,
+            title: 'Log out',
+            to: '/logout',
+            separate: true,
+        },
+    ];
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <div className={cx('logo')}>
-                    <img src={image.logo} alt="tiktok" />
-                </div>
+                <img src={image.logo} alt="tiktok" />
                 <div>
-                    <Tippy
+                    <HeadlessTippy
                         interactive
                         visible={searchResult.length > 0}
                         render={(attrs) => (
@@ -105,17 +136,36 @@ function Header() {
                                 <FontAwesomeIcon icon={faMagnifyingGlass} />
                             </button>
                         </div>
-                    </Tippy>
+                    </HeadlessTippy>
                 </div>
+
                 <div className={cx('actions')}>
-                    <Button className={cx('upload-btn')} text>
-                        Upload
-                    </Button>
-                    <Button primary>Log in</Button>
-                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-                        <button className={cx('more-btn')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                    {currentUser ? (
+                        <>
+                            <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                                <button className={cx('actions-btn')}>
+                                    <FontAwesomeIcon icon={faCloudArrowUp} />
+                                </button>
+                            </Tippy>
+                        </>
+                    ) : (
+                        <>
+                            <Button className={cx('upload-btn')} text>
+                                Upload
+                            </Button>
+                            <Button primary>Log in</Button>
+                        </>
+                    )}
+                    <Menu items={currentUser ? USER_MENU : MENU_ITEMS} onChange={handleMenuChange}>
+                        {currentUser ? (
+                            <div className={cx('wrapp-avatar')}>
+                                <img className={cx('user-avatar')} src={image.avatar} alt="Dieu Ho" />
+                            </div>
+                        ) : (
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>

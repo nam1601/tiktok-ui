@@ -9,7 +9,7 @@
     --default-layout-horizontal-spacer: 24px;
 
     --black-color: #000;
-    --text-color: #333;
+    --text-color: #161823;
 }
 * {
     margin: 0;
@@ -36,4 +36,22 @@ input,
 a[href] {
     color: var(--text-color);
     text-decoration: none;
+}
+body {
+    .tippy-box {
+        background-color: #545454eb;
+        color: #fff;
+        padding-top: 3px;
+        border-radius: 8px;
+        font-size: 1.6rem;
+        font-weight: 500;
+        line-height: 2.2rem;
+        margin: 0;
+    }
+    .tippy-content {
+        padding: 8px 9px;
+    }
+    .tippy-arrow {
+        color: #545454eb;
+    }
 }
