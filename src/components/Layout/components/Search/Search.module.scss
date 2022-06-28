@@ -1,0 +1,84 @@
+.search-result {
+    width: 361px;
+}
+.search-title {
+    color: rgba(22, 24, 35, 0.5);
+    height: 30px;
+    font-size: 1.4rem;
+    padding: 5px 12px;
+    font-weight: 600;
+}
+.search {
+    position: relative;
+    border: 1.5px solid transparent;
+    display: flex;
+    justify-content: space-between;
+    width: 361px;
+    height: var(--search-height);
+    // margin-top: 7px;
+    background-color: rgba(22, 24, 35, 0.08);
+    border-radius: var(--search-boder-radius);
+    padding-left: 16px;
+
+    &::after {
+        content: '';
+        position: absolute;
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        width: 1px;
+        right: var(--search-button-width);
+        top: var(--search-top-spacer);
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+
+    &:focus-within {
+        border: 1.5px solid rgba(22, 24, 35, 0.2);
+    }
+}
+.search-input {
+    flex: 1;
+    height: 100%;
+    padding: 12px 0;
+    color: var(--black-color);
+    background-color: transparent;
+    font-size: 1.6rem;
+    font-weight: 400;
+    caret-color: var(--primary-color);
+}
+.search-input:not(:placeholder-shown) ~ .search-btn {
+    color: rgba(22, 24, 35, 0.75);
+}
+.clear,
+.loading {
+    position: absolute;
+    right: calc(var(--search-button-width) + 16px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(22, 24, 35, 0.34);
+}
+.loading {
+    animation: spinner 1s linear infinite;
+}
+@keyframes spinner {
+    from {
+        transform: translateY(-50%) rotate(0);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+.search-btn {
+    height: 100%;
+    width: var(--search-button-width);
+    border-top-right-radius: var(--search-boder-radius);
+    border-bottom-right-radius: var(--search-boder-radius);
+    font-size: 2rem;
+    color: rgba(22, 24, 35, 0.34);
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+
+    &:active {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+}
