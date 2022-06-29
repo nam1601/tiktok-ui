@@ -6,13 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { SearchIcon } from '~/components/Icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
-import AccountItem from '~/components/AccountItem';
+import AccountItem from '~/components/AccountItem/AccountItem';
 import styles from './Search.module.scss';
 import { useDebounce } from '~/Hook';
-import * as request from '~/untils/request';
-import * as searchService from '~/apiServices/searchService';
+import * as searchService from '~/services/searchService';
 
 const cx = classNames.bind(styles);
 
@@ -22,13 +20,10 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
     const debounce = useDebounce(searchValue, 800);
-    // const checkFocus = () => {
-    //     if re
-    // }
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounce.trim()) {
             setSearchResult([]);
             return;
         }
@@ -57,9 +52,6 @@ function Search() {
             setSearchValue(searchValue);
         }
     };
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    // };
     return (
         <HeadlessTippy
             interactive

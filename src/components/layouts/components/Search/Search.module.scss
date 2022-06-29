@@ -17,7 +17,7 @@
     height: var(--search-height);
     // margin-top: 7px;
     background-color: rgba(22, 24, 35, 0.08);
-    border-radius: var(--search-boder-radius);
+    border-radius: var(--search-border-radius);
     padding-left: 16px;
 
     &::after {
@@ -70,8 +70,8 @@
 .search-btn {
     height: 100%;
     width: var(--search-button-width);
-    border-top-right-radius: var(--search-boder-radius);
-    border-bottom-right-radius: var(--search-boder-radius);
+    border-top-right-radius: var(--search-border-radius);
+    border-bottom-right-radius: var(--search-border-radius);
     font-size: 2rem;
     color: rgba(22, 24, 35, 0.34);
     &:hover {

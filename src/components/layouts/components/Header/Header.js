@@ -6,7 +6,6 @@ import {
     faEarthAsia,
     faCircleQuestion,
     faKeyboard,
-    faLanguage,
     faCoins,
     faGear,
     faArrowRightToBracket,
@@ -15,22 +14,22 @@ import 'tippy.js/dist/tippy.css'; // optional
 import image from '~/assets/images';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
-import { InboxIcon, MessageIcon, SearchIcon, UploadIcon } from '~/components/Icons';
+import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
 import 'tippy.js/dist/tippy.css';
-import Button from '~/components/Button';
-import Menu from '~/components/Popper/Menu';
-import Image from '~/components/Image';
+import Button from '~/components/Button/Button';
+import Menu from '~/components/Popper/Menu/Menu';
+import Image from '~/components/Image/Image';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import Search from '../Search';
-import routesConfig from '~/config/routes';
+import Search from '../Search/Search';
+import config from '~/config';
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        title: 'English',
+        title: 'English ',
         children: {
-            title: faLanguage,
+            title: 'Language',
             data: [
                 {
                     type: 'language',
@@ -66,14 +65,6 @@ const MENU_ITEMS = [
     },
 ];
 function Header() {
-    // const [searchResult, setSearchResult] = useState([]);
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setSearchResult([1, 2, 3, 4, 5]);
-    //     }, 0);
-    // });
-
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case 'language':
@@ -87,7 +78,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'View Profile',
-            to: '/profile',
+            to: '/@:nickname',
         },
         {
             icon: <FontAwesomeIcon icon={faCoins} />,
@@ -97,7 +88,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faGear} />,
             title: 'Setting',
-            to: '/settings',
+            to: '/setting',
         },
         ...MENU_ITEMS,
         {
@@ -110,7 +101,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={routesConfig.home} className={cx('logo-link')}>
+                <Link to={config.routes.home} className={cx('logo-link')}>
                     <img src={image.logo} alt="tiktok" />
                 </Link>
                 <div>
