@@ -9,6 +9,9 @@
 .menu-popper {
     padding-bottom: 8px;
 }
+.menu-body {
+    overflow-y: auto;
+}
 .menu-item {
     width: 100%;
     justify-content: flex-start;
@@ -24,8 +27,10 @@
     }
 }
 .header {
+    // position: fixed;
     height: 50px;
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
     text-align: center;

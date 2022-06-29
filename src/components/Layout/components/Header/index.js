@@ -1,4 +1,5 @@
 import styles from './Header.module.scss';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faEllipsisVertical,
@@ -21,6 +22,7 @@ import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import Search from '../Search';
+import routesConfig from '~/config/routes';
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -30,6 +32,16 @@ const MENU_ITEMS = [
         children: {
             title: faLanguage,
             data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'VietNamese',
+                },
                 {
                     type: 'language',
                     code: 'en',
@@ -98,7 +110,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={image.logo} alt="tiktok" />
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={image.logo} alt="tiktok" />
+                </Link>
                 <div>
                     <Search />
                 </div>
