@@ -38,7 +38,7 @@
 }
 .primary {
     background-color: var(--primary-color);
-    color: #fff;
+    color: #fff !important;
     border-bottom: var(--primary-color);
     &:hover {
         border-bottom: var(--primary-color);

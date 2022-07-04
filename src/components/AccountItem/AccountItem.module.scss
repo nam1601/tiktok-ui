@@ -8,6 +8,32 @@
         background-color: rgba(22, 24, 35, 0.03);
     }
 }
+.sidebar-account {
+    padding: 8px !important;
+}
+.sidebar-account {
+    margin: 6px 0;
+    .avatar {
+        // padding: 8px;
+        width: 32px;
+        height: 32px;
+    }
+    .infor {
+        height: 32px;
+    }
+    .name {
+        font-family: 'Sophiapro', sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 2.2rem;
+    }
+    .username {
+        display: flex;
+        line-height: 1.2rem;
+        line-height: 1.5rem;
+        margin-bottom: 2px;
+    }
+}
 .avatar {
     width: 40px;
     height: 40px;

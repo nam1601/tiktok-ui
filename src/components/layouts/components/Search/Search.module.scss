@@ -44,6 +44,7 @@
     font-size: 1.6rem;
     font-weight: 400;
     caret-color: var(--primary-color);
+    padding-right: 40px;
 }
 .search-input:not(:placeholder-shown) ~ .search-btn {
     color: rgba(22, 24, 35, 0.75);

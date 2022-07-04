@@ -7,9 +7,9 @@ import styles from './AccountItem.module.scss';
 import Image from '../Image/Image';
 const cx = classNames.bind(styles);
 
-function AccountItem({ data }) {
+function AccountItem({ data, className }) {
     return (
-        <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
+        <Link to={`/@${data.nickname}`} className={cx('wrapper', { [className]: className })}>
             <Image className={cx('avatar')} src={data.avatar} alt={data.full_name} />
             <div className={cx('infor')}>
                 <h4 className={cx('name')}>
