@@ -1,0 +1,43 @@
+.wrapper {
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        top: 0;
+        border: 0.5px solid rgba(22, 24, 35, 0.12);
+        transform: scaleY(0.5);
+    }
+    .title {
+        font-size: 1.4rem;
+        color: rgba(22, 24, 35, 0.75);
+        padding: 16px 0 8px 8px;
+    }
+    .block {
+        display: inline-block;
+        width: fit-content;
+        max-width: 100%;
+        height: 24px;
+
+        border: 1px solid rgba(22, 24, 35, 0.12);
+        border-radius: 30px;
+
+        color: rgba(22, 24, 35, 0.12);
+        font-size: 1.4rem;
+        line-height: 1.6rem;
+        text-align: center;
+
+        padding: 4px 10px;
+        margin: 0 8px 12px 0;
+
+        &-icon {
+            margin: 0 4px;
+        }
+        &-title {
+            font-weight: 400;
+
+            margin-left: 4px;
+        }
+    }
+}

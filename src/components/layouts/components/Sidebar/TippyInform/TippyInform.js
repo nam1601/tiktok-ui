@@ -12,8 +12,10 @@ function TippyInform({ data, className }) {
     return (
         <HeadlessTippy
             interactive
-            placement="bottom-end"
-            offset={[10, 0]}
+            placement="bottom"
+            // offset={[10, 0]}
+            delay={[800, 0]}
+            offset={[-200, -0]}
             render={(attrs) => (
                 <div className={cx('inform-block')} tabIndex="-1" {...attrs}>
                     <div className={cx('header')}>
@@ -24,7 +26,7 @@ function TippyInform({ data, className }) {
                     </div>
                     <div className={cx('infor')}>
                         <h4 className={cx('name')}>
-                            <span>{data.full_name}</span>
+                            <span>{data.first_name + ' ' + data.last_name}</span>
                             {data.tick && <FontAwesomeIcon className={cx('check-icon')} icon={faCheckCircle} />}
                         </h4>
                         <span className={cx('username')}>{data.nickname}</span>

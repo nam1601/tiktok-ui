@@ -13,6 +13,8 @@ import {
 import * as searchService from '~/services/searchService';
 
 import SideBarStage from './SideBarStage';
+import Discover from './Discover';
+import Footer from '../Footer';
 const cx = classNames.bind(styles);
 function Sidebar() {
     return (
@@ -32,8 +34,10 @@ function Sidebar() {
                     activeIcon={<LiveIconActive />}
                 />
             </Menu>
-            <SideBarStage title="Suggested Account" apiLink={searchService.search('n')} />
+            <SideBarStage title="Suggested Account" apiLink={searchService.suggestAccount('1', '5')} />
             <SideBarStage title="Following" apiLink={searchService.search('n')} />
+            <Discover />
+            <Footer />
         </aside>
     );
 }

@@ -1,0 +1,24 @@
+.wrapper {
+    position: relative;
+    padding: 16px 8px;
+    &::before {
+        position: absolute;
+        content: '';
+        left: 8px;
+        right: 8px;
+        top: 0;
+        border: 0.5px solid rgba(22, 24, 35, 0.2);
+        transform: scaleY(0.5);
+    }
+    .content {
+        margin-bottom: 8px;
+        a {
+            font-size: 1.25rem;
+            color: rgba(22, 24, 35, 0.75);
+            margin: 0 6px 6px 0;
+        }
+        :hover {
+            text-decoration: underline;
+        }
+    }
+}

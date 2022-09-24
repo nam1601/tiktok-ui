@@ -1,0 +1,22 @@
+.wrapper {
+    .post-block {
+        display: flex;
+        flex-direction: column;
+        .account {
+            .avatar {
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+            }
+            .info {
+                .name {
+                    display: flex;
+                    text-align: center;
+                    .nick-name {
+                        margin-right: 4px;
+                    }
+                }
+            }
+        }
+    }
+}

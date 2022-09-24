@@ -1,6 +1,11 @@
 .wrapper {
-    width: 356px;
-    min-height: 1000px;
+    display: flex;
+    flex-direction: column;
+
+    width: var(--sidebar-width);
+    // height: 1000px;
+    min-height: calc(100% - 60px);
     padding: 20px 0px 26px 0;
+    position: fixed;
     overflow-y: overlay;
 }
