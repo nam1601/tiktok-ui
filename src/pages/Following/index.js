@@ -1,4 +1,6 @@
+import Follow from '~/components/layouts/components/Follow';
+
 function Following() {
-    return <h1>Following</h1>;
+    return <Follow />;
 }
 export default Following;

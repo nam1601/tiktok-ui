@@ -1,19 +1,73 @@
 .wrapper {
+    margin-left: 60px;
+    margin-top: 24px;
     .post-block {
         display: flex;
         flex-direction: column;
+        border-bottom: 2px solid rgba(22, 24, 35, 0.2);
         .account {
-            .avatar {
+            margin: 24px 8px 12px 8px;
+            display: flex;
+            // align-items: center;
+
+            .block-ava {
                 width: 56px;
-                height: 56px;
-                border-radius: 50%;
+                margin-right: 8px;
+
+                .avatar {
+                    width: 100%;
+                    height: 56px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
             }
-            .info {
-                .name {
+            .info-block {
+                width: 100%;
+                .info {
                     display: flex;
-                    text-align: center;
-                    .nick-name {
-                        margin-right: 4px;
+                    justify-content: space-between;
+                    align-items: center;
+                    .name {
+                        display: flex;
+                        text-align: center;
+
+                        .nick-name {
+                            margin-right: 4px;
+                        }
+                        p {
+                            display: flex;
+                            align-items: center;
+                            font-size: 1.6rem;
+                        }
+                    }
+                    .follow-btn {
+                        height: 28px;
+                    }
+                }
+                .video-block {
+                    margin-top: 20px;
+                    display: flex;
+                    position: relative;
+
+                    .interactives {
+                        display: flex;
+                        height: 100%;
+                        flex-direction: column;
+                        align-self: end;
+
+                        padding: 8px 0;
+                        margin-left: 20px;
+
+                        .action-block {
+                            margin-bottom: 8px;
+                            .icon {
+                                font-size: 2.4rem;
+                            }
+                            .quantity {
+                                text-align: center;
+                                font-size: 1.5rem;
+                            }
+                        }
                     }
                 }
             }

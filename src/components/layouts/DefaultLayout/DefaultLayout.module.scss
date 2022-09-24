@@ -13,10 +13,10 @@
     padding: 0 var(--default-layout-horizontal-spacer);
     // background-color: #ccc;
 
-    overflow: hidden;
+    // overflow: hidden;
 }
 .content {
     flex: 1;
     min-height: 1000px;
-    margin-left: var(--sidebar-width);
+    // margin-left: var(--sidebar-width);
 }
