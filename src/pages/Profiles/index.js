@@ -26,7 +26,7 @@ function Profiles() {
         <div className={cx('wrapper')}>
             <div className={cx('info')}>
                 <div className={cx('general')}>
-                    <img src={user.avatar} />
+                    <img src={user.avatar} alt="" />
                     <div className={cx('name')}>
                         <div className={cx('nick-name')}>
                             <h2>{user.nickname}</h2>
