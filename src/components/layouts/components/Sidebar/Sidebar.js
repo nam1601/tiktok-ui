@@ -35,7 +35,7 @@ function Sidebar() {
                 />
             </Menu>
             <SideBarStage title="Suggested Account" apiLink={searchService.suggestAccount('1', '5')} />
-            <SideBarStage title="Following" apiLink={searchService.search('n')} />
+            <SideBarStage title="Following" apiLink={searchService.suggestAccount('1', '5')} />
             <Discover />
             <Footer />
         </aside>
