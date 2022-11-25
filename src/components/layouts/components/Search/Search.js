@@ -34,6 +34,7 @@ function Search() {
             setLoading(false);
         };
         fetchApi();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debounceValue]);
 
     const handleClear = () => {
