@@ -22,6 +22,7 @@ import Image from '~/components/Image/Image';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import Search from '../Search/Search';
 import config from '~/config';
+import { useEffect, useState } from 'react';
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -73,12 +74,12 @@ function Header() {
                 break;
         }
     };
-    const currentUser = true;
+    const currentUser = false;
     const USER_MENU = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'View Profile',
-            to: '/@:nickname',
+            to: '/',
         },
         {
             icon: <FontAwesomeIcon icon={faCoins} />,

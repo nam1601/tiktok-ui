@@ -10,18 +10,31 @@ import styles from './Profiles.module.scss';
 const cx = classNames.bind(styles);
 function Profiles() {
     const [user, setUser] = useState({});
+    const [userVideos, setUserVideo] = useState([]);
     let currentURL = document.URL;
     const handleURL = () => currentURL.search('@');
     const searchParams = currentURL.slice(handleURL() + 1);
     useEffect(() => {
-        const fetchApi = async () => {
-            const response = await service.search(searchParams);
-            setUser(response[0]);
+        // const fetchApi = async () => {
+        //     const response = await service.search(searchParams);
+        //     setUser(response[0]);
+        // };
+        // fetchApi();
+        // console.log(user);
+        const fetchCurrentUser = async () => {
+            const response = await service.getCurrentUser();
+            setUser(response);
         };
-        fetchApi();
-        console.log(user);
-    }, [user]);
-
+        fetchCurrentUser();
+    }, []);
+    useEffect(() => {
+        const fetchVideos = async () => {
+            const response = await service.getVideo();
+            setUserVideo(...response);
+        };
+        fetchVideos();
+        console.log(userVideos);
+    }, []);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('info')}>
@@ -33,9 +46,9 @@ function Profiles() {
                             {user.tick && <FontAwesomeIcon className={cx('check-icon')} icon={faCircleCheck} />}
                         </div>
                         <h1 className={cx('full-name')}>{user.first_name + ' ' + user.last_name}</h1>
-                        <Button outline className={cx('message-btn')}>
+                        {/* <Button outline className={cx('message-btn')}>
                             Message
-                        </Button>
+                        </Button> */}
                     </div>
                 </div>
                 <div className={cx('introduces')}>

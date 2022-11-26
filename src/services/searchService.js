@@ -35,3 +35,19 @@ export const videoContent = async (type = 'for-you', page) => {
         return res.data;
     } catch (error) {}
 };
+export const getVideo = async () => {
+    try {
+        const res = await httpRequest.get(`${httpRequest.token}/1/posts`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const getCurrentUser = async () => {
+    try {
+        const res = await httpRequest.get('auth/me');
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
