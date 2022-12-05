@@ -19,16 +19,16 @@ function SideBarStage({ title, apiLink }) {
         //         .then((response) => response.json())
         //         .then((data) => setAccounts(data));
         // }, [accounts]);
-        const fetchApi = async () => {
-            if (!seeAll) {
-                const result = await apiLink;
-                setAccounts(result);
-            } else {
-                const result = await searchService.suggestAccount(1, 16);
-                setAccounts(result);
-            }
-        };
-        fetchApi();
+        // const fetchApi = async () => {
+        //     if (!seeAll) {
+        //         const result = await apiLink;
+        //         setAccounts(result);
+        //     } else {
+        //         const result = await searchService.suggestAccount(1, 16);
+        //         setAccounts(result);
+        //     }
+        // };
+        // fetchApi();
     }, [seeAll]);
 
     return (

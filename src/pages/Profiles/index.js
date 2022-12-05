@@ -9,11 +9,15 @@ import styles from './Profiles.module.scss';
 
 const cx = classNames.bind(styles);
 function Profiles() {
+    const tokenItem = JSON.parse(localStorage.getItem('Token'));
+    const [token, setToken] = useState(tokenItem ?? '');
     const [user, setUser] = useState({});
-    const [userVideos, setUserVideo] = useState([]);
+    // const [listVideo, setListVideo] = useState([]);
+    const [userVideos, setUserVideos] = useState([]);
     let currentURL = document.URL;
     const handleURL = () => currentURL.search('@');
     const searchParams = currentURL.slice(handleURL() + 1);
+    useEffect(() => {}, []);
     useEffect(() => {
         // const fetchApi = async () => {
         //     const response = await service.search(searchParams);
@@ -21,20 +25,23 @@ function Profiles() {
         // };
         // fetchApi();
         // console.log(user);
+        const fetchVideos = async () => {
+            const response = await service.getUserListVideos(user.id);
+            setUserVideos(response);
+        };
         const fetchCurrentUser = async () => {
-            const response = await service.getCurrentUser();
+            const response = await service.getCurrentUser(token);
             setUser(response);
         };
         fetchCurrentUser();
-    }, []);
-    useEffect(() => {
-        const fetchVideos = async () => {
-            const response = await service.getVideo();
-            setUserVideo(...response);
-        };
         fetchVideos();
-        console.log(userVideos);
-    }, []);
+    }, [user, userVideos]);
+    // useEffect(() => {
+    //     const fetchVideos = async () => {
+    //         const response = await service.getUserListVideos(user.id);
+    //     };
+    //     fetchVideos();
+    // }, [user]);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('info')}>

@@ -1,4 +1,3 @@
-import styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,19 +9,24 @@ import {
     faGear,
     faArrowRightToBracket,
 } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 import 'tippy.js/dist/tippy.css'; // optional
-import image from '~/assets/images';
-import classNames from 'classnames/bind';
-import Tippy from '@tippyjs/react';
 import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
+import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+
+import classNames from 'classnames/bind';
+import image from '~/assets/images';
 import Button from '~/components/Button/Button';
 import Menu from '~/components/Popper/Menu/Menu';
 import Image from '~/components/Image/Image';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
 import Search from '../Search/Search';
 import config from '~/config';
+import styles from './Header.module.scss';
+import * as service from '~/services/searchService';
+
 import { useEffect, useState } from 'react';
+
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -65,7 +69,12 @@ const MENU_ITEMS = [
         title: 'Keyboard shortcuts',
     },
 ];
+
 function Header() {
+    const tokenItem = JSON.parse(localStorage.getItem('Token'));
+    const [user, setUser] = useState({});
+    const [isLogin, setIsLogin] = useState(false);
+    const [token, setToken] = useState(tokenItem ?? '');
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case 'language':
@@ -74,7 +83,6 @@ function Header() {
                 break;
         }
     };
-    const currentUser = false;
     const USER_MENU = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,
@@ -99,6 +107,27 @@ function Header() {
             separate: true,
         },
     ];
+    const Login = () => {
+        const getCurrentUser = async () => {
+            const response = await service.login();
+            setUser(response.data);
+            setToken(response.meta.token);
+        };
+        getCurrentUser();
+        setIsLogin(true);
+    };
+    // useEffect(() => {
+    //     const getCurrentUser = async () => {
+    //         const response = await service.login();
+    //         setUser(response.data);
+    //         setToken(response.meta.token);
+    //     };
+    //     getCurrentUser();
+    // }, [isLogin]);
+    useEffect(() => {
+        const newToken = JSON.stringify(token);
+        localStorage.setItem('Token', newToken);
+    }, [user]);
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -110,7 +139,7 @@ function Header() {
                 </div>
 
                 <div className={cx('actions')}>
-                    {currentUser ? (
+                    {isLogin && (
                         <>
                             <Tippy delay={[0, 100]} content="Upload video" placement="bottom">
                                 <button className={cx('actions-btn')}>
@@ -127,24 +156,28 @@ function Header() {
                                     <InboxIcon />
                                 </button>
                             </Tippy>
+                            <Menu items={USER_MENU} onChange={handleMenuChange}>
+                                <Link>
+                                    <Image className={cx('user-avatar')} src={user.avatar} alt={user.first_name} />
+                                </Link>
+                            </Menu>
                         </>
-                    ) : (
+                    )}
+                    {!isLogin && (
                         <>
                             <Button className={cx('upload-btn')} text>
                                 Upload
                             </Button>
-                            <Button primary>Log in</Button>
+                            <Button primary onClick={Login}>
+                                Log in
+                            </Button>
+                            <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
+                                <button className={cx('more-btn')}>
+                                    <FontAwesomeIcon icon={faEllipsisVertical} />
+                                </button>
+                            </Menu>
                         </>
                     )}
-                    <Menu items={currentUser ? USER_MENU : MENU_ITEMS} onChange={handleMenuChange}>
-                        {currentUser ? (
-                            <Image className={cx('user-avatar')} src={image.avatar} alt="Dieu Ho" />
-                        ) : (
-                            <button className={cx('more-btn')}>
-                                <FontAwesomeIcon icon={faEllipsisVertical} />
-                            </button>
-                        )}
-                    </Menu>
                 </div>
             </div>
         </header>

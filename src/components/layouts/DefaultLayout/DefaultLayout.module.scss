@@ -8,7 +8,7 @@
     display: flex;
 
     width: var(--default-layout-width);
-    max-width: 100%;
+    // max-width: 100%;
     min-height: 100vh;
     padding: 0 var(--default-layout-horizontal-spacer);
     // background-color: #ccc;
@@ -16,6 +16,7 @@
     // overflow: hidden;
 }
 .content {
+    margin-left: calc(var(--sidebar-width) + 60px);
     flex: 1;
     min-height: 1000px;
     // margin-left: var(--sidebar-width);
