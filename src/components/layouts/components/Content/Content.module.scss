@@ -1,5 +1,5 @@
 .wrapper {
-    margin-left: 60px;
+    margin-left: calc(var(--sidebar-width) + 60px);
     margin-top: 24px;
     .post-block {
         display: flex;

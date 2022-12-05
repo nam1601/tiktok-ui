@@ -1,11 +1,10 @@
 .wrapper {
+    position: fixed;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow-y: scroll;
     width: var(--sidebar-width);
-    // height: 1000px;
+    height: 180vh;
     min-height: calc(100% - 60px);
     padding: 20px 0px 26px 0;
-    overflow-y: overlay;
-    // position: fixed;
 }
