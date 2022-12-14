@@ -1,5 +1,6 @@
 .wrapper {
     width: 100%;
+    margin-top: 24px;
 
     .info {
         width: 100%;
@@ -16,7 +17,11 @@
             .name {
                 padding-left: 24px;
                 .nick-name {
+                    display: flex;
+                    align-items: center;
+                    // justify-content: center;
                     h2 {
+                        // display: inline-block;
                         max-width: 360px;
                         font-weight: 700;
                         font-size: 3.2rem;
@@ -25,6 +30,12 @@
                         text-overflow: ellipsis;
                         text-align: left;
                         line-height: 1.1875;
+                    }
+                    .check-icon {
+                        margin-bottom: 8px;
+                        margin-left: 4px;
+                        font-size: 2rem;
+                        color: aqua;
                     }
                 }
                 .full-name {
@@ -56,6 +67,21 @@
         }
         .bio {
             font-weight: 400;
+        }
+    }
+    .category {
+        width: 440px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        &-title {
+            flex: 1;
+            font-size: 1.8rem;
+        }
+        &-icon {
+            font-size: 1.8rem;
+            color: var(--black-color);
         }
     }
 }

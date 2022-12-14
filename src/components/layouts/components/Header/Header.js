@@ -25,7 +25,8 @@ import config from '~/config';
 import styles from './Header.module.scss';
 import * as service from '~/services/searchService';
 
-import { useEffect, useState } from 'react';
+import { useState, useContext } from 'react';
+import { AuthUserContext } from '~/App';
 
 const cx = classNames.bind(styles);
 
@@ -71,13 +72,17 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-    const tokenItem = JSON.parse(localStorage.getItem('Token'));
-    const [user, setUser] = useState({});
-    const [isLogin, setIsLogin] = useState(false);
-    const [token, setToken] = useState(tokenItem ?? '');
+    const authUser = useContext(AuthUserContext);
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case 'language':
+                break;
+            default:
+                break;
+        }
+        switch (menuItem.to) {
+            case '/@profile':
+                window.location.href = `/@${authUser.data.nickname}`;
                 break;
             default:
                 break;
@@ -87,7 +92,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'View Profile',
-            to: '/',
+            to: '/@profile',
         },
         {
             icon: <FontAwesomeIcon icon={faCoins} />,
@@ -110,11 +115,10 @@ function Header() {
     const Login = () => {
         const getCurrentUser = async () => {
             const response = await service.login();
-            setUser(response.data);
-            setToken(response.meta.token);
+            localStorage.setItem('user', JSON.stringify(response));
+            window.location.reload();
         };
         getCurrentUser();
-        setIsLogin(true);
     };
     // useEffect(() => {
     //     const getCurrentUser = async () => {
@@ -124,10 +128,10 @@ function Header() {
     //     };
     //     getCurrentUser();
     // }, [isLogin]);
-    useEffect(() => {
-        const newToken = JSON.stringify(token);
-        localStorage.setItem('Token', newToken);
-    }, [user]);
+    // useEffect(() => {
+    //     // const newToken = JSON.stringify(token);
+    //     // localStorage.setItem('Token', newToken);
+    // }, [user]);
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -139,7 +143,7 @@ function Header() {
                 </div>
 
                 <div className={cx('actions')}>
-                    {isLogin && (
+                    {authUser ? (
                         <>
                             <Tippy delay={[0, 100]} content="Upload video" placement="bottom">
                                 <button className={cx('actions-btn')}>
@@ -158,12 +162,15 @@ function Header() {
                             </Tippy>
                             <Menu items={USER_MENU} onChange={handleMenuChange}>
                                 <Link>
-                                    <Image className={cx('user-avatar')} src={user.avatar} alt={user.first_name} />
+                                    <Image
+                                        className={cx('user-avatar')}
+                                        src={authUser.data.avatar}
+                                        alt={authUser.data.first_name}
+                                    />
                                 </Link>
                             </Menu>
                         </>
-                    )}
-                    {!isLogin && (
+                    ) : (
                         <>
                             <Button className={cx('upload-btn')} text>
                                 Upload
@@ -178,6 +185,21 @@ function Header() {
                             </Menu>
                         </>
                     )}
+                    {/* {authUser && (
+                        <>
+                            <Button className={cx('upload-btn')} text>
+                                Upload
+                            </Button>
+                            <Button primary onClick={Login}>
+                                Log in
+                            </Button>
+                            <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
+                                <button className={cx('more-btn')}>
+                                    <FontAwesomeIcon icon={faEllipsisVertical} />
+                                </button>
+                            </Menu>
+                        </>
+                    )} */}
                 </div>
             </div>
         </header>

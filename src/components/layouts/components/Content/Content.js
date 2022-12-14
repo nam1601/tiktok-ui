@@ -8,6 +8,7 @@ import * as service from '~/services/searchService';
 import styles from './Content.module.scss';
 import Video from './Video';
 import Button from '~/components/Button';
+import Image from '~/components/Image';
 const cx = classNames.bind(styles);
 function Content() {
     const [content, setContent] = useState([]);
@@ -27,7 +28,7 @@ function Content() {
                     <div className={cx('account')}>
                         <div className={cx('block-ava')}>
                             <Link to={`/@${item.user.nickname}`} className={cx('ava')}>
-                                <img className={cx('avatar')} alt="" src={item.user.avatar} />
+                                <Image className={cx('avatar')} alt="" src={item.user.avatar} />
                             </Link>
                         </div>
 

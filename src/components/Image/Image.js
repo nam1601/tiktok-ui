@@ -6,9 +6,7 @@ import { useState } from 'react';
 import styles from './Image.module.scss';
 const Image = forwardRef(({ src, alt, className, ...props }, ref) => {
     const [failBack, setFailBack] = useState('');
-    const handleError = () => {
-        setFailBack(images.noImage);
-    };
+    const handleError = () => setFailBack(images.noImage);
     return (
         <img
             className={classNames(styles.wrapper, className)}

@@ -1,36 +1,34 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import Tippy from '@tippyjs/react/headless';
+// import Tippy from '@tippyjs/react/headless';
 import { useState, useEffect } from 'react';
-import AccountItem from '~/components/AccountItem';
+// import AccountItem from '~/components/AccountItem';
 import * as searchService from '~/services/searchService';
 import styles from './SideBarStage.module.scss';
 import TippyInform from '../TippyInform';
 const cx = classNames.bind(styles);
-function SideBarStage({ title, apiLink }) {
+function SideBarStage({ title, apiLink, token }) {
     const [accounts, setAccounts] = useState([]);
-    const [allAccounts, setAllAccounts] = useState([]);
     const [seeAll, setSeeAll] = useState(false);
-    const handleClick = () => {
-        setSeeAll(true);
-    };
     useEffect(() => {
-        //     fetch('https://tiktok.fullstack.edu.vn/api/users/search?q=n&type=less')
-        //         .then((response) => response.json())
-        //         .then((data) => setAccounts(data));
-        // }, [accounts]);
-        // const fetchApi = async () => {
-        //     if (!seeAll) {
-        //         const result = await apiLink;
-        //         setAccounts(result);
-        //     } else {
-        //         const result = await searchService.suggestAccount(1, 16);
-        //         setAccounts(result);
-        //     }
-        // };
-        // fetchApi();
+        const fetchApi = async () => {
+            if (!seeAll) {
+                const result = await apiLink;
+                setAccounts(result);
+            } else {
+                let result = [];
+                if (title === 'Following') {
+                    if (token !== '') {
+                        result = await searchService.followList(1, 16, token);
+                    } else result = [];
+                } else {
+                    result = await searchService.suggestAccount(1, 16);
+                }
+                setAccounts(result);
+            }
+        };
+        fetchApi();
     }, [seeAll]);
-
     return (
         <div className={cx('wrapper')}>
             <p className={cx('title')}>{title}</p>
