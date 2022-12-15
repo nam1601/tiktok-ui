@@ -50,6 +50,7 @@ const data = [
 ];
 
 function Discover() {
+    console.log('Data: ', data);
     return (
         <div className={cx('wrapper')}>
             <p className={cx('title')}>Discover</p>

@@ -29,6 +29,7 @@ function SideBarStage({ title, apiLink, token }) {
         };
         fetchApi();
     }, [seeAll]);
+    console.log('account: ', accounts);
     return (
         <div className={cx('wrapper')}>
             <p className={cx('title')}>{title}</p>

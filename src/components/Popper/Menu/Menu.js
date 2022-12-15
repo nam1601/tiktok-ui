@@ -13,6 +13,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
     const renderItem = () => {
+        console.log('menu: ', current.data);
         return current.data.map((item, index) => {
             const isParent = !!item.children;
             return (
