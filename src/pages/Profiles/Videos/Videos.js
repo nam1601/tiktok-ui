@@ -7,7 +7,7 @@ import styles from './Videos.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Videos({ data, personal, ...props }) {
+function Videos({ data = [], personal, ...props }) {
     const videoRef = useRef();
     const handlePlay = (e) => {
         e.target.play();
