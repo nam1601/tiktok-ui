@@ -7,13 +7,20 @@ import * as searchService from '~/services/searchService';
 import styles from './SideBarStage.module.scss';
 import TippyInform from '../TippyInform';
 const cx = classNames.bind(styles);
-function SideBarStage({ title, apiLink, token }) {
+function SideBarStage({ title, token }) {
     const [accounts, setAccounts] = useState([]);
     const [seeAll, setSeeAll] = useState(false);
     useEffect(() => {
         const fetchApi = async () => {
             if (!seeAll) {
-                const result = await apiLink;
+                let result = [];
+                if (title === 'Following') {
+                    if (token !== '') {
+                        result = await searchService.followList(1, 5, token);
+                    } else result = [];
+                } else {
+                    result = await searchService.suggestAccount(1, 5);
+                }
                 setAccounts(result);
             } else {
                 let result = [];

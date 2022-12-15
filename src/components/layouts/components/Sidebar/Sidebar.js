@@ -60,11 +60,11 @@ function Sidebar() {
                     activeIcon={<LiveIconActive />}
                 />
             </Menu>
-            <SideBarStage title="Suggested Account" apiLink={service.suggestAccount('1', '5')} />
+            <SideBarStage title="Suggested Account" />
             {authUser && (
                 <SideBarStage
                     title="Following"
-                    apiLink={service.followList('1', '5', authUser.meta.token)}
+                    // apiLink={service.followList('1', '5', authUser.meta.token)}
                     token={authUser.meta.token}
                 />
             )}
