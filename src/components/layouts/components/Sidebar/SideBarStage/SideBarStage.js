@@ -16,10 +16,10 @@ function SideBarStage({ title, token }) {
                 let result = [];
                 if (title === 'Following') {
                     if (token) {
-                        result = await searchService.followList(1, 5, token);
+                        result = (await searchService.followList(1, 5, token)) ?? [];
                     } else result = [];
                 } else {
-                    result = await searchService.suggestAccount(1, 5);
+                    result = (await searchService.suggestAccount(1, 5)) ?? [];
                     console.log(result);
                 }
                 console.log('result: ', result);
@@ -28,10 +28,10 @@ function SideBarStage({ title, token }) {
                 let result = [];
                 if (title === 'Following') {
                     if (token) {
-                        result = await searchService.followList(1, 16, token);
+                        result = (await searchService.followList(1, 16, token)) ?? [];
                     } else result = [];
                 } else {
-                    result = await searchService.suggestAccount(1, 16);
+                    result = (await searchService.suggestAccount(1, 16)) ?? [];
                     console.log(result);
                 }
                 console.log('result: ', result);
