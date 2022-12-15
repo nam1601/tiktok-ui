@@ -14,7 +14,7 @@ function Follow() {
         };
         fetchApi();
     }, []);
-    console.log('ListUser: ', listUsers);
+
     return (
         <div className={cx('wrapper')}>
             {listUsers.map((item, index) => (

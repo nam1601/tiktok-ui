@@ -33,7 +33,7 @@ function Profiles() {
         };
         fetchUserInfo();
     }, [accessToken, nickname]);
-    console.log(nickname);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('info')}>

@@ -20,7 +20,7 @@ function Content() {
         };
         fetchApi();
     }, []);
-    console.log('content: ', content);
+
     return (
         <div className={cx('wrapper')}>
             {content.map((item, index) => (

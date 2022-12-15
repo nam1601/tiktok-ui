@@ -8,7 +8,6 @@ import styles from './SideBarStage.module.scss';
 import TippyInform from '../TippyInform';
 const cx = classNames.bind(styles);
 function SideBarStage({ title, token }) {
-    console.log('error in sidebar stage');
     const [accounts, setAccounts] = useState([]);
     const [seeAll, setSeeAll] = useState(false);
     useEffect(() => {
@@ -16,28 +15,31 @@ function SideBarStage({ title, token }) {
             if (!seeAll) {
                 let result = [];
                 if (title === 'Following') {
-                    if (token !== '') {
+                    if (token) {
                         result = await searchService.followList(1, 5, token);
                     } else result = [];
                 } else {
                     result = await searchService.suggestAccount(1, 5);
                 }
+                console.log('result: ', result);
                 setAccounts(result);
             } else {
                 let result = [];
                 if (title === 'Following') {
-                    if (token !== '') {
+                    if (token) {
                         result = await searchService.followList(1, 16, token);
                     } else result = [];
                 } else {
                     result = await searchService.suggestAccount(1, 16);
                 }
+                console.log('result: ', result);
+
                 setAccounts(result);
             }
         };
         fetchApi();
     }, [seeAll]);
-    console.log('account', title, ': ', accounts);
+    console.log('account ', title, ': ', accounts);
     return (
         <div className={cx('wrapper')}>
             <p className={cx('title')}>{title}</p>

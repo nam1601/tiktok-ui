@@ -21,7 +21,7 @@ function Search() {
     const [loading, setLoading] = useState(false);
     const debounceValue = useDebounce(searchValue, 800);
     const inputRef = useRef();
-    console.log('search');
+
     useEffect(() => {
         if (!debounceValue.trim()) {
             setSearchResult([]);
@@ -62,7 +62,6 @@ function Search() {
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Account</h4>
                         {searchResult.map((result) => {
-                            console.log('search: ', searchResult);
                             return <AccountItem key={result.id} data={result} />;
                         })}
                     </PopperWrapper>
