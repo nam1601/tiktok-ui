@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './AccountItem.module.scss';
 import Image from '../Image/Image';
-import Profiles from '~/pages/Profiles';
 const cx = classNames.bind(styles);
 
 function AccountItem({ data, className }) {

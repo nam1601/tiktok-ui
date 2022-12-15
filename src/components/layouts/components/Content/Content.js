@@ -19,7 +19,7 @@ function Content() {
             setContent((prev) => [...prev, ...res]);
         };
         fetchApi();
-    }, [pagination]);
+    }, []);
     console.log('content: ', content);
     return (
         <div className={cx('wrapper')}>
