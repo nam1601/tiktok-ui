@@ -10,7 +10,7 @@ import {
     LiveIcon,
     LiveIconActive,
 } from '~/components/Icons';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import * as service from '~/services/searchService';
 
@@ -28,7 +28,21 @@ function Sidebar() {
     //         setToken(newToken);
     //     });
     // }, [token]);
-
+    const [suggest, setSuggest] = useState([]);
+    // useEffect(() => {
+    //     const fetchSuggested = async () => {
+    //         const response = await service.suggestAccount(1, 5);
+    //         setSuggest(response);
+    //     };
+    //     fetchSuggested();
+    // }, []);
+    // const [followed, setFollowed] = useState([]);
+    // useEffect(() => {
+    //     const fetchFollowed = async () => {
+    //         const response = await service.followList(1, 5, authUser.meta.token);
+    //         setFollowed(response);
+    //     };
+    // }, [authUser.meta.token]);
     return (
         <aside className={cx('wrapper')}>
             <Menu>
