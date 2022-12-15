@@ -8,6 +8,7 @@ import styles from './SideBarStage.module.scss';
 import TippyInform from '../TippyInform';
 const cx = classNames.bind(styles);
 function SideBarStage({ title, token }) {
+    console.log('error in sidebar stage');
     const [accounts, setAccounts] = useState([]);
     const [seeAll, setSeeAll] = useState(false);
     useEffect(() => {

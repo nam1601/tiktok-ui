@@ -28,7 +28,7 @@ function Sidebar() {
     //         setToken(newToken);
     //     });
     // }, [token]);
-    const [suggest, setSuggest] = useState([]);
+    // const [suggest, setSuggest] = useState([]);
     // useEffect(() => {
     //     const fetchSuggested = async () => {
     //         const response = await service.suggestAccount(1, 5);
