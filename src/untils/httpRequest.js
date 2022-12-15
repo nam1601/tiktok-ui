@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { useState } from 'react';
 
 const httpRequest = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL,
+    baseURL: 'https://tiktok.fullstack.edu.vn/api/',
     // headers: {
     //     'Content-Type': 'application/json',
     //     Authorization: 'Bearer ' + token,
