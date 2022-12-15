@@ -1,9 +1,7 @@
-import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faHashtag, faMusic } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import Button from '~/components/Button';
 
 import styles from './Discover.module.scss';
 
