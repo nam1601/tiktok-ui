@@ -8,7 +8,7 @@ export const AuthUserContext = createContext();
 function App() {
     const authUser = JSON.parse(localStorage.getItem('user'));
     console.log(authUser);
-    console.log(publicRoutes);
+    console.log('publicRoutes: ', publicRoutes);
     return (
         <AuthUserContext.Provider value={authUser}>
             <Router>
