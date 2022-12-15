@@ -22,8 +22,6 @@ import { AuthUserContext } from '~/App';
 const cx = classNames.bind(styles);
 function Sidebar() {
     const authUser = useContext(AuthUserContext);
-    const tokenItem = JSON.parse(localStorage.getItem('Token'));
-    const [token, setToken] = useState(tokenItem ?? '');
     // useEffect(() => {
     //     window.addEventListener('storage', () => {
     //         const newToken = localStorage.getItem('Token');

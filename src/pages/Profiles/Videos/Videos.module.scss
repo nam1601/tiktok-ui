@@ -1,0 +1,26 @@
+.video-block {
+    position: relative;
+
+    width: calc(100% / 4);
+    height: auto;
+    margin-right: 8px;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    overflow: hidden;
+    .video {
+        width: 100%;
+        height: 100%;
+
+        z-index: 2;
+    }
+    .video-btn {
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+
+        color: #fff;
+        font-size: 2.2rem;
+    }
+}
