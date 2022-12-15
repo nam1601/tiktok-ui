@@ -15,7 +15,7 @@ function Content() {
     const [pagination, setPagination] = useState(1);
     useEffect(() => {
         const fetchApi = async () => {
-            const res = await service.videoContent('for-you', pagination);
+            const res = (await service.videoContent('for-you', pagination)) ?? [];
             setContent((prev) => [...prev, ...res]);
         };
         fetchApi();
