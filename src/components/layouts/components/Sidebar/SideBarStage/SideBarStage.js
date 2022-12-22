@@ -10,6 +10,7 @@ const cx = classNames.bind(styles);
 function SideBarStage({ title, token }) {
     const [accounts, setAccounts] = useState([]);
     const [seeAll, setSeeAll] = useState(false);
+
     useEffect(() => {
         const fetchApi = async () => {
             if (!seeAll) {
@@ -41,7 +42,7 @@ function SideBarStage({ title, token }) {
         };
         fetchApi();
     }, [seeAll]);
-    console.log('account ', title, ': ', accounts);
+    console.log('AccountSBS: ', accounts);
     return (
         <div className={cx('wrapper')}>
             <p className={cx('title')}>{title}</p>

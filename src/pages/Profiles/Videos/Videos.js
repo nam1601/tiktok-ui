@@ -15,7 +15,7 @@ function Videos({ data = [], personal, ...props }) {
     const handlePause = (e) => {
         e.target.pause();
     };
-
+    console.log(data);
     return (
         <>
             {data &&

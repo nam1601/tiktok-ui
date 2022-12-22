@@ -22,17 +22,19 @@ function Profiles() {
     // const handleURL = () => currentURL.search('@');
     // const searchParams = currentURL.slice(handleURL() + 1);
     const { nickname } = useParams();
+
+    console.log('response: ', user);
     const accessToken = authUser && authUser.meta.token ? authUser.meta.token : '';
     const handleActive = (e) => {
         setActiveTab(e.target.textContent);
     };
     useEffect(() => {
         const fetchUserInfo = async () => {
-            const response = await service.getAUser(nickname, accessToken);
+            const response = await service.getAUser(nickname);
             setUser(response);
         };
         fetchUserInfo();
-    }, [accessToken, nickname]);
+    }, [nickname]);
 
     return (
         <div className={cx('wrapper')}>
@@ -45,7 +47,7 @@ function Profiles() {
                             {user.tick && <FontAwesomeIcon className={cx('check-icon')} icon={faCircleCheck} />}
                         </div>
                         <h1 className={cx('full-name')}>{user.first_name + ' ' + user.last_name}</h1>
-                        {nickname === authUser.data.nickname ? (
+                        {authUser && nickname === authUser.data.nickname ? (
                             <Button
                                 className={cx('message-btn', 'edit-btn')}
                                 leftIcon={<FontAwesomeIcon icon={faPenToSquare} />}
@@ -93,7 +95,10 @@ function Profiles() {
                 <div className={cx('active-bar', 'liked-bar')}></div>
             )}
             <div className={cx('list')}>
-                <Videos data={user.videos} personal={nickname === authUser.data.nickname ? true : false} />
+                <Videos
+                    data={user.videos ?? []}
+                    personal={authUser && nickname === authUser.data.nickname ? true : false}
+                />
             </div>
         </div>
     );
