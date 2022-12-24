@@ -1,14 +1,18 @@
 .wrapper {
     width: 100%;
-    height: 100%;
+    height: 622.22px;
     max-width: 350px;
     position: relative;
-
+    display: flex;
+    align-items: center;
+    background-color: #666;
+    border-radius: 12px;
+    overflow: hidden;
     .video {
         object-fit: cover;
-        height: 50%;
+        height: auto;
         width: 100%;
-        border-radius: 12px;
+        // border-radius: 12px;
     }
     .actions {
         position: absolute;

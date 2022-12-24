@@ -23,7 +23,6 @@ function Profiles() {
     // const searchParams = currentURL.slice(handleURL() + 1);
     const { nickname } = useParams();
 
-    console.log('response: ', user);
     const accessToken = authUser && authUser.meta.token ? authUser.meta.token : '';
     const handleActive = (e) => {
         setActiveTab(e.target.textContent);

@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCommentDots, faHeart, faShare } from '@fortawesome/free-solid-svg-icons';
@@ -10,19 +10,61 @@ import Video from './Video';
 import Button from '~/components/Button';
 import Image from '~/components/Image';
 const cx = classNames.bind(styles);
-function Content() {
+const INIT_PAGE = 1;
+function Content({ ...props }) {
     const [content, setContent] = useState([]);
-    const [pagination, setPagination] = useState(1);
-    useEffect(() => {
-        const fetchApi = async () => {
-            const res = (await service.videoContent('for-you', pagination)) ?? [];
-            setContent((prev) => [...prev, ...res]);
-        };
-        fetchApi();
-    }, []);
+    const [pagination, setPagination] = useState(INIT_PAGE);
+    const [noMoreVideo, setNoMoreVideo] = useState(false);
+    // useEffect(() => {
+    //     fetchApi();
+    //     console.log('state: ', props.state);
+    //     console.log('page: ', pagination);
+    // }, []);
+    const fetchApi = async () => {
+        const res = await service.videoContent('for-you', pagination);
+        console.log('res: ', res);
+        setContent((prev) => [...prev, ...res.data]);
+        setPagination((prev) => prev + 1);
+        console.log('page: ', pagination);
+        if (res.data.length === 0 || pagination === res.meta.pagination.total) {
+            console.log('page max');
+            setNoMoreVideo(true);
+        }
+    };
+    const loadMore = useCallback(() => {
+        return setTimeout(() => {
+            fetchApi();
+            //     service
+            //         .videoContent('for-you', pagination)
+            //         .then((res) => {
+            //             if (Array.isArray(res.data)) {
+            //                 setContent((prev) => [...prev, ...res.data]);
+            //                 setPagination((prev) => prev + 1);
+            //             }
 
+            //             if (res.data.length === 0 || pagination === res.meta.pagination.total) {
+            //                 setNoMoreVideo(true);
+            //             }
+            //         })
+            //         .catch((error) => {
+            //             console.log(error);
+            //         });
+        }, 1000);
+    }, [setContent, pagination]);
+
+    useEffect(() => {
+        if (!noMoreVideo) {
+            loadMore();
+        }
+        return () => clearTimeout(loadMore);
+    }, [loadMore]);
+    // const fetchApi = async () => {
+    //     const res = await service.videoContent('for-you', pagination);
+    //     console.log('res: ', res);
+    //     setContent((prev) => [...prev, ...res]);
+    // };
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper')} id="content">
             {content.map((item, index) => (
                 <div className={cx('post-block')} key={index}>
                     <div className={cx('account')}>
@@ -51,7 +93,7 @@ function Content() {
                                 </Button>
                             </div>
                             <div className={cx('video-block')}>
-                                <Video src={item.file_url} index={index} />
+                                <Video description={item.description} src={item.file_url} index={index} />
                                 <div className={cx('interactives')}>
                                     <div className={cx('action-block')}>
                                         <FontAwesomeIcon icon={faHeart} className={cx('icon')} />

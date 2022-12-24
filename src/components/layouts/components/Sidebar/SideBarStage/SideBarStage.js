@@ -21,9 +21,8 @@ function SideBarStage({ title, token }) {
                     } else result = [];
                 } else {
                     result = (await searchService.suggestAccount(1, 5)) ?? [];
-                    console.log(result);
                 }
-                console.log('result: ', result);
+
                 setAccounts(result);
             } else {
                 let result = [];
@@ -33,16 +32,13 @@ function SideBarStage({ title, token }) {
                     } else result = [];
                 } else {
                     result = (await searchService.suggestAccount(1, 16)) ?? [];
-                    console.log(result);
                 }
-                console.log('result: ', result);
 
                 setAccounts(result);
             }
         };
         fetchApi();
     }, [seeAll]);
-    console.log('AccountSBS: ', accounts);
     return (
         <div className={cx('wrapper')}>
             <p className={cx('title')}>{title}</p>

@@ -52,7 +52,7 @@ export const videoContent = async (type = 'for-you', page) => {
                 page,
             },
         });
-        return res.data;
+        return res;
     } catch (error) {}
 };
 export const getVideo = async (id) => {

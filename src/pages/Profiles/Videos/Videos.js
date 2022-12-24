@@ -19,8 +19,8 @@ function Videos({ data = [], personal, ...props }) {
     return (
         <>
             {data &&
-                data.map((item) => (
-                    <div className={cx('video-block')} key={item.id}>
+                data.map((item, index) => (
+                    <div className={cx('video-block', `${index % 4 === 0 && index !== 0 ? 'out' : ''}`)} key={item.id}>
                         <video
                             ref={videoRef}
                             className={cx('video')}
