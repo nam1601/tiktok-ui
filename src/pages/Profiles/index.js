@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import { useEffect, useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import * as service from '~/services/searchService';
+import * as service from '~/services/services';
 import styles from './Profiles.module.scss';
 import Button from '~/components/Button';
 import { AuthUserContext } from '~/App';

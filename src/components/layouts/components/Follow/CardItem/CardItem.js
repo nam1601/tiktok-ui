@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 
-import * as service from '~/services/searchService';
+import * as service from '~/services/services';
 import Button from '~/components/Button';
 import styles from './CardItem.module.scss';
 import Image from '~/components/Image';

@@ -10,7 +10,7 @@ import { useState, useEffect, useRef } from 'react';
 import AccountItem from '~/components/AccountItem/AccountItem';
 import styles from './Search.module.scss';
 import { useDebounce } from '~/Hook';
-import * as searchService from '~/services/searchService';
+import * as searchService from '~/services/services';
 
 const cx = classNames.bind(styles);
 

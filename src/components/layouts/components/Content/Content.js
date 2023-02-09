@@ -1,10 +1,12 @@
 import classNames from 'classnames/bind';
-import { useEffect, useState, useCallback } from 'react';
+import React from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCommentDots, faHeart, faShare } from '@fortawesome/free-solid-svg-icons';
+// import InfiniteScroll from 'react-infinite-scroll-component';
 
-import * as service from '~/services/searchService';
+import * as service from '~/services/services';
 import styles from './Content.module.scss';
 import Video from './Video';
 import Button from '~/components/Button';
@@ -14,57 +16,43 @@ const INIT_PAGE = 1;
 function Content({ ...props }) {
     const [content, setContent] = useState([]);
     const [pagination, setPagination] = useState(INIT_PAGE);
-    const [noMoreVideo, setNoMoreVideo] = useState(false);
-    // useEffect(() => {
-    //     fetchApi();
-    //     console.log('state: ', props.state);
-    //     console.log('page: ', pagination);
-    // }, []);
-    const fetchApi = async () => {
+    // const [hasMore, setHasMore] = useState(true);
+    const listInnerRef = useRef();
+    const fetchApi = async (pagination) => {
         const res = await service.videoContent('for-you', pagination);
-        console.log('res: ', res);
         setContent((prev) => [...prev, ...res.data]);
-        setPagination((prev) => prev + 1);
-        console.log('page: ', pagination);
         if (res.data.length === 0 || pagination === res.meta.pagination.total) {
             console.log('page max');
-            setNoMoreVideo(true);
         }
     };
-    const loadMore = useCallback(() => {
-        return setTimeout(() => {
-            fetchApi();
-            //     service
-            //         .videoContent('for-you', pagination)
-            //         .then((res) => {
-            //             if (Array.isArray(res.data)) {
-            //                 setContent((prev) => [...prev, ...res.data]);
-            //                 setPagination((prev) => prev + 1);
-            //             }
-
-            //             if (res.data.length === 0 || pagination === res.meta.pagination.total) {
-            //                 setNoMoreVideo(true);
-            //             }
-            //         })
-            //         .catch((error) => {
-            //             console.log(error);
-            //         });
-        }, 1000);
-    }, [setContent, pagination]);
-
     useEffect(() => {
-        if (!noMoreVideo) {
-            loadMore();
-        }
-        return () => clearTimeout(loadMore);
-    }, [loadMore]);
-    // const fetchApi = async () => {
-    //     const res = await service.videoContent('for-you', pagination);
-    //     console.log('res: ', res);
-    //     setContent((prev) => [...prev, ...res]);
+        fetchApi(pagination);
+        // if (content.meta.total < pagination) {
+        //     setHasMore(false);
+        // }
+    }, [pagination]);
+    // const onScroll = () => {
+    //     const scrollTop = document.documentElement.scrollTop;
+    //     const scrollHeight = document.documentElement.scrollHeight;
+    //     const clientHeight = document.documentElement.clientHeight;
+    //     if (scrollTop + clientHeight >= scrollHeight) {
+    //         setPagination(pagination + 1);
+    //     }
     // };
+    const onScroll = () => {
+        if (listInnerRef.current) {
+            const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
+            if (scrollTop + clientHeight === scrollHeight) {
+                setPagination(pagination + 1);
+            }
+        }
+    };
+    useEffect(() => {
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
+    }, [content]);
     return (
-        <div className={cx('wrapper')} id="content">
+        <div className={cx('wrapper')} id="content" ref={listInnerRef}>
             {content.map((item, index) => (
                 <div className={cx('post-block')} key={index}>
                     <div className={cx('account')}>

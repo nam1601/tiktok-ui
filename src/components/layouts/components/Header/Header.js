@@ -23,7 +23,7 @@ import Image from '~/components/Image/Image';
 import Search from '../Search/Search';
 import config from '~/config';
 import styles from './Header.module.scss';
-import * as service from '~/services/searchService';
+import * as service from '~/services/services';
 
 import { useState, useContext } from 'react';
 import { AuthUserContext } from '~/App';

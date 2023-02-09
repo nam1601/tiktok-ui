@@ -12,7 +12,7 @@ import {
 } from '~/components/Icons';
 import { useContext, useEffect, useState } from 'react';
 
-import * as service from '~/services/searchService';
+import * as service from '~/services/services';
 
 import SideBarStage from './SideBarStage';
 import Discover from './Discover';

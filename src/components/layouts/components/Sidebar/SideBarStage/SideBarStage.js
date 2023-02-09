@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 // import Tippy from '@tippyjs/react/headless';
 import { useState, useEffect } from 'react';
 // import AccountItem from '~/components/AccountItem';
-import * as searchService from '~/services/searchService';
+import * as searchService from '~/services/services';
 import styles from './SideBarStage.module.scss';
 import TippyInform from '../TippyInform';
 const cx = classNames.bind(styles);

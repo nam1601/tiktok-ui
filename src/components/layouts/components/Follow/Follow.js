@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 
-import * as service from '~/services/searchService';
+import * as service from '~/services/services';
 import CardItem from './CardItem';
 import styles from './Follow.module.scss';
 const cx = classNames.bind(styles);
