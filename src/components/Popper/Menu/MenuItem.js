@@ -6,8 +6,12 @@ import styles from './Menu.module.scss';
 const cx = classNames.bind(styles);
 function MenuItem({ data, onClick }) {
     const classes = cx('menu-item', { separate: data.separate });
+    const handleLogOut = () => {
+        localStorage.removeItem('user');
+        window.location.reload();
+    };
     return (
-        <Button leftIcon={data.icon} to={data.to} className={classes} onClick={onClick}>
+        <Button leftIcon={data.icon} to={data.to} className={classes} onClick={data.logOut ? handleLogOut : onClick}>
             {data.title}
         </Button>
     );

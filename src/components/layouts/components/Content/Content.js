@@ -4,14 +4,14 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCommentDots, faHeart, faShare } from '@fortawesome/free-solid-svg-icons';
-// import InfiniteScroll from 'react-infinite-scroll-component';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import * as service from '~/services/services';
 import styles from './Content.module.scss';
 import Video from './Video';
 import Button from '~/components/Button';
 import Image from '~/components/Image';
-import InfiniteScroll from 'react-infinite-scroll-component';
+
 const cx = classNames.bind(styles);
 const INIT_PAGE = 1;
 function Content({ ...props }) {

@@ -27,6 +27,7 @@ import * as service from '~/services/services';
 
 import { useState, useContext } from 'react';
 import { AuthUserContext } from '~/App';
+import LoginModal from '~/components/LoginModal/LoginModal';
 
 const cx = classNames.bind(styles);
 
@@ -73,6 +74,7 @@ const MENU_ITEMS = [
 
 function Header() {
     const authUser = useContext(AuthUserContext);
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case 'language':
@@ -108,8 +110,9 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faArrowRightToBracket} />,
             title: 'Log out',
-            to: '/logout',
+            to: '/',
             separate: true,
+            logOut: true,
         },
     ];
     const Login = () => {
@@ -120,18 +123,9 @@ function Header() {
         };
         getCurrentUser();
     };
-    // useEffect(() => {
-    //     const getCurrentUser = async () => {
-    //         const response = await service.login();
-    //         setUser(response.data);
-    //         setToken(response.meta.token);
-    //     };
-    //     getCurrentUser();
-    // }, [isLogin]);
-    // useEffect(() => {
-    //     // const newToken = JSON.stringify(token);
-    //     // localStorage.setItem('Token', newToken);
-    // }, [user]);
+    // const Login = () => {
+    //     setIsOpenModal(true);
+    // };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -183,23 +177,9 @@ function Header() {
                                     <FontAwesomeIcon icon={faEllipsisVertical} />
                                 </button>
                             </Menu>
+                            {/* {isOpenModal && <LoginModal />} */}
                         </>
                     )}
-                    {/* {authUser && (
-                        <>
-                            <Button className={cx('upload-btn')} text>
-                                Upload
-                            </Button>
-                            <Button primary onClick={Login}>
-                                Log in
-                            </Button>
-                            <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-                                <button className={cx('more-btn')}>
-                                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                                </button>
-                            </Menu>
-                        </>
-                    )} */}
                 </div>
             </div>
         </header>
